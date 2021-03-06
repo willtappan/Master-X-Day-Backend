@@ -7,10 +7,10 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 
 # Mysql Connection
-app.config['MYSQL_HOST'] = 'localhost' 
+app.config['MYSQL_HOST'] = '' 
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'django'
-app.config['MYSQL_DB'] = 'flaskcontacts'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = ''
 mysql = MySQL(app)
 
 # settings
@@ -20,12 +20,11 @@ app.secret_key = "mysecretkey"
 @app.route('/')
 def Index():
     cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM contacts')
     data = cur.fetchall()
     cur.close()
-    return render_template('index.html', contacts = data)
+    return 0
 
 
 if __name__ == "__main__":
-    app.run(port=3000, debug=True)
+    app.run(port=5000, debug=True)
     
